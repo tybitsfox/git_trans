@@ -1,3 +1,8 @@
 本目录的主要是为在ssh登录不上tybitsfox.koding.kd.io时，通过github来进行
 本地文件与koding服务器的传递。
-
+2014-10-1发现一个数据库更新的问题：
+当时用mysqldump database >database.sql备份，使用mysql database < database.sql恢复时，konding的数据库记录显示正常。
+但是当时用：>load data infile '/tmp/new.txt' into table menu_tb;恢复时，新的记录就会出现乱码。
+这个问题在我的本地机器上容易解决，修改my.cnf文件，将[mysqld]节中添加 character-set-server=utf8 即可解决。
+但是在koding上由于没有权限无法修改这一字段，所以只能使用第一种方式添加记录了，但是第一种方式是全备份，全恢复的。
+没有第二种方式灵活，仅添加增加的记录。
